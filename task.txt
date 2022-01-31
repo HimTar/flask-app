@@ -1,0 +1,3 @@
+1. Create a Flask application having model "Departments" and "Employee" , should have Department ID , Department Name , Manager ( should be an employee ) ,
+2. Implement CRUD operation.
+3. Try to dockerize the app.

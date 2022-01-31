@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+
+    .container{
+        width: 80%;
+        margin: 4rem 10%;
+    }
+
+    table{
+        width:100%;
+        margin-top: 2rem;
+        border-collapse: separate;
+        border-spacing: 0 0.5rem;
+    }
+    
+    th, td{
+        text-align: left;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+
+<div class = "container">
+    <h1>
+        Employee Section
+    </h1>
+    
+    <table>
+        <tr>
+            <th>S No.</th>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Action</th>
+        </tr>
+        
+        {% for employee in employees %}
+
+        <tr>
+            <td>{{employee.id}}</td>
+            <td>{{employee.name}}</td>
+            <td>{{employee.designation}}</td>
+            <td><a href="/delete-employee/{{employee.id}}">DELETE</a></td>
+        </tr>
+
+        {% endfor %}
+    </table>
+
+    <form action="/employee" method="post" >
+        <h1>Add Emplyoees</h1>
+        <input type = "text" name="name" id = "name" />
+        <input type = "text" name="designation" id = "designation" />
+    
+        <input type = "submit" />
+    </form>
+</div>
+    
+<div class = "container">
+    <h1>
+        Department Section
+    </h1>
+    
+    <table>
+        <tr>
+            <th>S No.</th>
+            <th>Name</th>
+            <th>Manager</th>
+            <th>Action</th>
+        </tr>
+        
+        {% for dept in department %}
+
+        <tr>
+            <td>{{dept.id}}</td>
+            <td>{{dept.name}}</td>
+            <td>{{dept.manager}}</td>
+            <td><a href="/delete-department/{{dept.id}}">DELETE</a></td>
+        </tr>
+
+        {% endfor %}
+    </table>
+
+    <form action="/department" method="post" >
+        <h1>Add Department</h1>
+        <input type = "text" name="dept_name" id = "dept_name" />
+        <select name="manager" id="manager">
+            {% for emp in employees %}
+            <option value={{emp.id}}>{{emp.name}}</option>
+            {% endfor %}
+        </select>
+    
+        <input type = "submit" />
+    </form>
+</div>
+
+{% endblock %}
